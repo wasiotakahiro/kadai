@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :require_sign_in!, only: [:new, :edit, :show]
  def index
     @blogs = Blog.all
  end
@@ -20,37 +21,44 @@ class BlogsController < ApplicationController
       render 'new'
     end
  end
-  
+
   def show
   end
- 
+
   def edit
   end
-  
-  def update 
+
+  def update
     if @blog.update(blog_params)
       redirect_to blogs_path, notice: "ブログを編集しました！"
     else
       render 'edit'
     end
   end
-  
+
   def destroy
     @blog.destroy
     redirect_to blogs_path, notice:"ブログを削除しました！"
   end
-  
-    def confirm
-      @blog = Blog.new(blog_params)
-      render :new if @blog.invalid?
-    end
-end
-  
+
+  def confirm
+    @blog = Blog.new(blog_params)
+    render :new if @blog.invalid?
+  end
+
+
   private
     def blog_params
       params.require(:blog).permit(:title, :content)
     end
- 
+
     def set_blog
       @blog = Blog.find(params[:id])
     end
+
+    def require_sign_in!
+      unless logged_in?
+        redirect_to sessions_new_path, noctice:"ログインしてください"
+      end
+    end
+  end
