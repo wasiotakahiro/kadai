@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
-  get 'tops/index'
   resources :sessions, only: [:new, :create, :destroy]
+  resources :favorites, only: [:create, :destroy]
     resources :users
   resources :blogs do
     collection do
