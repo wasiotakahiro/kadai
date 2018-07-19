@@ -18,9 +18,13 @@ class BlogsController < ApplicationController
     @blog.user_id = current_user.id # login user がblog を投稿
     if @blog.save
       redirect_to blogs_path, notice: "ブログを作成しました！"
+      @inform = current_user.email
+      ContactMailer.send_mail(@inform).deliver
     else
       render 'new'
     end
+
+
  end
 
   def show
