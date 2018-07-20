@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
+  root to: 'tops#index'
+
   resources :feeds
   resources :contacts
   resources :sessions, only: [:new, :create, :destroy]
   resources :favorites, only: [:create, :destroy]
-    resources :users
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  resources :users
   resources :blogs do
     collection do
       post :confirm
     end
   end
-   root to: 'tops#index'
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener"
 end
