@@ -7,6 +7,6 @@ end
 def send_mail(inform)
     @inform = inform
     # binding.pry
-    mail to: inform, subject: "投稿完了通知"
+    mail to: @inform, subject: "投稿完了通知"
   end
 end
