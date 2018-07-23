@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def new
     if params[:back]
        @user = User.new(user_params)
+       @user.icon_image.retrieve_from_cache! params[:cache][:icon_image]
      else
        @user = User.new
      end
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
 
  def create
   @user = User.new(user_params)
+  @user.icon_image.retrieve_from_cache! params[:cache][:icon_image]
   if @user.save
     redirect_to user_path(@user.id)
   else
@@ -31,6 +33,6 @@ end
 
  private
  def user_params
-   params.require(:user).permit(:name, :email, :password, :password_confirmation,)
+   params.require(:user).permit(:name, :email, :password, :password_confirmation,:icon_image, :icon_image_cache)
  end
 end

@@ -19,6 +19,11 @@
     <%= form.text_field :content %>
   </div>
   <%= form.submit %>
+<div class="blog_image">
+    <p class="blog_image_lable"><%= form.label :image %></p>
+    <p class="blog_image_input"><%= form.file_field :image, id: :@blog_image %></p>
+    <%= image_tag(@blog.image.url) if @blog.image.url %>
+    <%= form.hidden_field :image_cache %>
+  </div>
 <% end %>
-
 <%= link_to "ブログ一覧画面にもどる", blogs_path %>
