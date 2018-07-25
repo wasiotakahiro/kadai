@@ -22,6 +22,7 @@ class FeedsController < ApplicationController
   end
 
   def confirm
+    binding.pry
   @feed = Feed.new(feed_params)
 end
 

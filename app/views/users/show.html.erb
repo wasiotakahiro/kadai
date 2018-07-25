@@ -8,6 +8,7 @@
 
  <h3>あなたのお気に入り投稿</h3><br>
 <% @favorite_blogs.each do |blog| %>
+<p>メールアドレス: <%= @user.email %></p>
 <table>
   <tr>
     <th class="index_favorite_blog_user_name">投稿者名</th>
@@ -15,6 +16,5 @@
     <th class="index_favorite_blog_content">内容</th>
     <th class="index_favorite_blog_content">image</th>
   </tr>
-<% end %>
-<p>メールアドレス: <%= @user.email %></p>
+ <% end %>
 <%= link_to "topにもどる", blogs_path %>
