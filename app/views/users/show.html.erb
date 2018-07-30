@@ -1,20 +1,22 @@
+
 <h1><%= @user.name %>のページ</h1>
 <p class="user_infomation_image">
 </p>
 <p class="user_infomation">メールアドレス: <%= @user.email %></p>
+<%= image_tag(@user.icon_image) if @user.icon_image %>
 <p class="user_infomation">
   <%= link_to 'ユーザー情報を編集', edit_user_path(@user.id), class: 'btn btn-warning' %>
 </p>
 
  <h3>あなたのお気に入り投稿</h3><br>
-<% @favorite_blogs.each do |blog| %>
-<p>メールアドレス: <%= @user.email %></p>
-<table>
-  <tr>
-    <th class="index_favorite_blog_user_name">投稿者名</th>
-    <th class="index_favorite_blog_title">タイトル</th>
-    <th class="index_favorite_blog_content">内容</th>
-    <th class="index_favorite_blog_content">image</th>
-  </tr>
- <% end %>
-<%= link_to "topにもどる", blogs_path %>
+ <div class="favrites">
+  <% @favorite_blogs.each do |blog| %>
+  <table>
+    <tr>
+      <h2><%= blog.title %></h2>
+      <p><%= blog.content %></p>
+    </tr>
+  </table>
+   <% end %>
+   <%= link_to "topにもどる", blogs_path %>
+</div>

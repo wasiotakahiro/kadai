@@ -4,13 +4,13 @@
   <%= form.hidden_field :email %>
   <%= form.hidden_field :password %>
   <%= form.hidden_field :password_confirmation %>
-  <%= hidden_field_tag :"cache[image]",@user.icon_image.cache_name %>
+  <%= form.hidden_field :icon_image_cache %>
 
   <p>名前:<%= @user.name %></p>
   <p>メールアドレス:<%= @user.email %></p>
   <p>パスワード:<%= @user.password %></p>
   <p>
-    <%= image_tag(@user.icon_image.url) %>
+    <%= image_tag(@user.icon_image) %>
   </p>
 
 
@@ -20,6 +20,6 @@
 <%= form_with(model:@user, url:new_user_path, local:true, method:"get") do |form| %>
   <%= form.hidden_field :name %>
   <%= form.hidden_field :email %>
-  <%= hidden_field_tag :"cache[icon_image]",@user.icon_image.cache_name %>
+  <%= form.hidden_field :icon_image_cache %>
   <%= form.submit "戻る", name: "back" %>
 <% end %>

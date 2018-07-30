@@ -65,6 +65,10 @@ class BlogsController < ApplicationController
       @blog = Blog.find(params[:id])
     end
 
+    def set_user_infomation
+      @user = User.find(params[:id])
+    end
+
     def require_sign_in!
       unless logged_in?
         redirect_to sessions_new_path, noctice:"ログインしてください"
